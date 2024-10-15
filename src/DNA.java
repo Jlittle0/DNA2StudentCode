@@ -38,8 +38,6 @@ public class DNA {
 
         // Convert STR into a integer value (Operation based on string length)
         int numSTR = convertString(STR);
-        System.out.println("-----------------------------");
-        System.out.println(numSTR);
 
         int currentSegment = convertString(sequence.substring(0, STR.length()));
         ArrayList<Integer> occurences = new ArrayList<>();
@@ -53,24 +51,62 @@ public class DNA {
             currentSegment = replaceNew(currentSegment, sequence.charAt(i));
         }
 
-        // Go through all instances of the target segment and
+        if (occurences.isEmpty())
+            return 0;
+
+        // Idea here is to mark each element in occurences as seen, or not seen, via a
+        // external map (array) filled with 0 or 1 so that things aren't constantly double counted
+
+        // Going to have to use a while loop to find the next number that has a difference of
+        // three or the first number that has a difference greater than three.
+
+        int[] checked = new int[occurences.size()];
+
+        int count = 1;
+        int highestCount = 1;
+        int currentNum;
+        boolean continueSearching;
+        int nextValid;
+
+        // Go through all instances of the target segment and find longest occurence.
         for (int i = 0; i < occurences.size(); i++) {
-            int currentNum = occurences.get(i);
-            while (currentNum < occurences.get(occurences.size())) {
-
+            currentNum = occurences.get(i);
+            continueSearching = checkContinue(occurences, i, highestCount);
+            nextValid = i;
+            while (continueSearching && checked[i] == 0) {
+                // While loop to search for next valid number
+                nextValid = nextValid(occurences, nextValid, STR.length());
+                if (nextValid != -1 && currentNum + STR.length() == occurences.get(nextValid)) {
+                    checked[nextValid] = 1;
+                    count++;
+                    currentNum = occurences.get(nextValid);
+                }
+                else {
+                    highestCount = count > highestCount ? count : highestCount;
+                    count = 1;
+                    continueSearching = false;
+                }
             }
+            checked[i] = 1;
         }
-        System.out.println(occurences);
 
-        //Convert the letters into numbers for faster comparisons, and then instead of changing your
-        // current check entirely whenever you shift right across the sequence, just remove the
-        // first number and add the next one to the end.
+        return highestCount;
+    }
 
-        // Maybe use bit shifting?
-        // To convert the number to the right place, do n((i << 3) + (i << 1)) so that it's
-        // shifting by powers of 10.
+    public static boolean checkContinue(ArrayList<Integer> arr, int index, int count) {
+        if (arr.size() - index < count)
+            return false;
+        return true;
+    }
 
-        return 0;
+    public static int nextValid(ArrayList<Integer> arr, int index, int strLength) {
+        int temp = 0;
+        while (index + temp < arr.size() && arr.get(index) > arr.get(index + temp) - strLength) {
+            temp++;
+        }
+        if (index + temp >= arr.size())
+            return -1;
+        return index + temp;
     }
 
     public static int replaceNew(int currentSegment, char nextLetter) {
