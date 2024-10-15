@@ -42,26 +42,27 @@ public class DNA {
         int currentSegment = convertString(sequence.substring(0, STR.length()));
         ArrayList<Integer> occurences = new ArrayList<>();
 
-        // Find all instances of the target segment
+        // Find all instances of the target segment and add them to occurences arraylist
         for (int i = STR.length(); i < sequence.length(); i++) {
+            // If the segment I'm viewing is equal to the target I'm looking for, add it to the
+            // arraylist and then move to the next letter in the sequence.
             if (currentSegment == numSTR) {
                 occurences.add(i - STR.length());
                 currentSegment = replaceNew(currentSegment, sequence.charAt(i));
             }
-            currentSegment = replaceNew(currentSegment, sequence.charAt(i));
+            else
+                currentSegment = replaceNew(currentSegment, sequence.charAt(i));
         }
 
+        // If I couldn't find any occurences of the desired segment/sequence, return 0;
         if (occurences.isEmpty())
             return 0;
 
-        // Idea here is to mark each element in occurences as seen, or not seen, via a
-        // external map (array) filled with 0 or 1 so that things aren't constantly double counted
-
-        // Going to have to use a while loop to find the next number that has a difference of
-        // three or the first number that has a difference greater than three.
-
+        // Array for instant time lookups of whether or not an occurence has been checked to
+        // limit repetetive and unneccessary checks.
         int[] checked = new int[occurences.size()];
 
+        // Bunch of variables
         int count = 1;
         int highestCount = 1;
         int currentNum;
@@ -71,10 +72,12 @@ public class DNA {
         // Go through all instances of the target segment and find longest occurence.
         for (int i = 0; i < occurences.size(); i++) {
             currentNum = occurences.get(i);
+            // Make sure I should still be searching for the longest and it hasn't already been found
             continueSearching = checkContinue(occurences, i, highestCount);
             nextValid = i;
             while (continueSearching && checked[i] == 0) {
-                // While loop to search for next valid number
+                // While loop to search for next valid number that's either the right distance away
+                // to represent it being consecutive in the sequence or too far apart
                 nextValid = nextValid(occurences, nextValid, STR.length());
                 if (nextValid != -1 && currentNum + STR.length() == occurences.get(nextValid)) {
                     checked[nextValid] = 1;
@@ -100,6 +103,8 @@ public class DNA {
     }
 
     public static int nextValid(ArrayList<Integer> arr, int index, int strLength) {
+        // Finds the next valid number (something of strLength distance away or greater) from
+        // the occurences arraylist or whatever is passed through as a parameter.
         int temp = 0;
         while (index + temp < arr.size() && arr.get(index) > arr.get(index + temp) - strLength) {
             temp++;
@@ -119,10 +124,14 @@ public class DNA {
     }
 
     public static int shiftLeft(int num) {
+        // Uses bitshifting to basically just multiply by 10. Wanted to try something, but didn't
+        // work out so I just kept this.
         return (num << 3) + (num << 1);
     }
 
     public static int removeFirst(int num) {
+        // Removes the first digit from a number and then shifts it to the left so that I can
+        // just add whatever I want to the end instantly.
         if (num != 0) {
             int numlength = (int) (Math.log10(num) + 1);
             int temp = (int) Math.pow(10, numlength - 1);
