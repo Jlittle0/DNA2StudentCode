@@ -47,14 +47,15 @@ public class DNATest {
     @Test
     @Timeout(value = 20000, unit = TimeUnit.MILLISECONDS)
     public void testLargest() {
+        // Should be a billion
         int maxSize = 1000000000;
         char STR = 'a';
         try {
             char[] largeCharArray = new char[maxSize];
             Arrays.fill(largeCharArray, STR);
             String largeString = new String(largeCharArray);
-            assertEquals(maxSize / 2, studentSolution.STRCount(largeString, "aa"),
-                    "Test Largest failed: should return " + maxSize / 2);
+            assertEquals(maxSize / 10, studentSolution.STRCount(largeString, "aaaaaaaaaa"),
+                    "Test Largest failed: should return " + maxSize / 10);
         } catch (OutOfMemoryError e) {
             System.err.println("Ran out of memory trying to create a large string");
         }

@@ -14,32 +14,32 @@ import java.util.ArrayList;
 
 public class DNA {
 
+    public static long REMOVEFIRST = 0;
+
     /**
      * TODO: Complete this function, STRCount(), to return longest consecutive run of STR in sequence.
      */
     public static int STRCount(String sequence, String STR) {
-        // I essentially need to create a variable that holds th evalue of the currnent DNA
-        // segment I'm looking at, I need to be able to take the last STR.length() - 1 nubers
-        // then bring that and the next letter in the dna sequence to convertToString
-        // and then shift everything over by one and add the new number. Basically
-        // cut the first number in the string, and tack on the new last one. Like a queue.
+        // Radix for this problemset since there are only characters A, C, T, and G.
+        final int RADIX = 4;
 
-
-        /*   // Mapping numbers
-                - A = 2 (65)
-                - C = 4 (67)
-                - G = 3 (71)
-                - T = 1 (84)
-         */
+        // Value required to cut off the first letter for each calculation when shifting window.
+        // Radix to the power of STR.length() - 1 by using powers of 2.
+        REMOVEFIRST = 1 << (STR.length() - 1) * 2;
 
         // Basic check to see if STR is valid.
         if (!isValid(STR))
             return 0;
 
-        // Convert STR into a integer value (Operation based on string length)
-        int numSTR = convertString(STR);
+        /*   // Mapping STR to an integer value by character
+                - A = 1 (65)
+                - C = 3 (67)
+                - G = 2 (71)
+                - T = 0 (84)
+         */
+        long numSTR = convertString(STR);
 
-        int currentSegment = convertString(sequence.substring(0, STR.length()));
+        long currentSegment = convertString(sequence.substring(0, STR.length()));
         ArrayList<Integer> occurences = new ArrayList<>();
 
         // Find all instances of the target segment and add them to occurences arraylist
@@ -114,38 +114,34 @@ public class DNA {
         return index + temp;
     }
 
-    public static int replaceNew(int currentSegment, char nextLetter) {
+    public static long replaceNew(long currentSegment, char nextLetter) {
         return removeFirst(currentSegment) + convertChar(nextLetter);
     }
 
     public static int convertChar(char c) {
         // Spent roughly 15 minutes working on this simply bc I wanted it 1-4
-       return (c - 64) % 5 + 1;
+       return (c - 64) % 5;
     }
 
-    public static int shiftLeft(int num) {
-        // Uses bitshifting to basically just multiply by 10. Wanted to try something, but didn't
-        // work out so I just kept this.
-        return (num << 3) + (num << 1);
+    public static long shiftLeft(long num) {
+        // Uses bitshifting to basically just multiply by 4.
+        return num << 2;
     }
 
-    public static int removeFirst(int num) {
+    public static long removeFirst(long num) {
         // Removes the first digit from a number and then shifts it to the left so that I can
         // just add whatever I want to the end instantly.
         if (num != 0) {
-            int numlength = (int) (Math.log10(num) + 1);
-            int temp = (int) Math.pow(10, numlength - 1);
-            return shiftLeft(num % temp);
+            return shiftLeft(num % REMOVEFIRST);
         }
         return 0;
     }
 
-    public static int convertString(String s) {
-        // Uses bit shifting to bring numbers to the power of 10 per loop
-        int numSTR = convertChar(s.charAt(0));
+    public static long convertString(String s) {
+        // Uses bit shifting to bring numbers to the power of 4 per loop
+        long numSTR = convertChar(s.charAt(0));
         for (int i = 1; i < s.length(); i++) {
-            numSTR = shiftLeft(numSTR);
-            numSTR += convertChar(s.charAt(i));
+            numSTR = shiftLeft(numSTR) + convertChar(s.charAt(i));
         }
         return numSTR;
     }
