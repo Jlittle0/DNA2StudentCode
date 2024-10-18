@@ -40,14 +40,14 @@ public class DNA {
         long numSTR = convertString(STR);
 
         long currentSegment = convertString(sequence.substring(0, STR.length()));
-        ArrayList<Integer> occurences = new ArrayList<>();
+        ArrayList<Long> occurences = new ArrayList<>();
 
         // Find all instances of the target segment and add them to occurences arraylist
         for (int i = STR.length(); i < sequence.length(); i++) {
             // If the segment I'm viewing is equal to the target I'm looking for, add it to the
             // arraylist and then move to the next letter in the sequence.
             if (currentSegment == numSTR) {
-                occurences.add(i - STR.length());
+                occurences.add((long)i - STR.length());
                 currentSegment = replaceNew(currentSegment, sequence.charAt(i));
             }
             else
@@ -65,7 +65,7 @@ public class DNA {
         // Bunch of variables
         int count = 1;
         int highestCount = 1;
-        int currentNum;
+        long currentNum;
         boolean continueSearching;
         int nextValid;
 
@@ -96,13 +96,13 @@ public class DNA {
         return highestCount;
     }
 
-    public static boolean checkContinue(ArrayList<Integer> arr, int index, int count) {
+    public static boolean checkContinue(ArrayList<Long> arr, int index, int count) {
         if (arr.size() - index < count)
             return false;
         return true;
     }
 
-    public static int nextValid(ArrayList<Integer> arr, int index, int strLength) {
+    public static int nextValid(ArrayList<Long> arr, int index, int strLength) {
         // Finds the next valid number (something of strLength distance away or greater) from
         // the occurences arraylist or whatever is passed through as a parameter.
         int temp = 0;
