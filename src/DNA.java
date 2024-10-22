@@ -20,6 +20,10 @@ public class DNA {
      * TODO: Complete this function, STRCount(), to return longest consecutive run of STR in sequence.
      */
     public static int STRCount(String sequence, String STR) {
+        // Make sure to go through the sequence, skip over whatever string of STRs we find, and then for the last one in the strong, make sure to go back to the second letter of that STR. AGA AGA AGA AAZT begins at the G for the third AGA.
+
+
+
         // Radix for this problemset since there are only characters A, C, T, and G.
         final int RADIX = 4;
 
@@ -46,20 +50,16 @@ public class DNA {
         for (int i = STR.length(); i < sequence.length(); i++) {
             // If the segment I'm viewing is equal to the target I'm looking for, add it to the
             // arraylist and then move to the next letter in the sequence.
-            if (currentSegment == numSTR) {
+            if (currentSegment == numSTR)
                 occurences.add((long)i - STR.length());
-                currentSegment = replaceNew(currentSegment, sequence.charAt(i));
-            }
-            else
-                currentSegment = replaceNew(currentSegment, sequence.charAt(i));
+            currentSegment = replaceNew(currentSegment, sequence.charAt(i));
         }
 
         // If I couldn't find any occurences of the desired segment/sequence, return 0;
         if (occurences.isEmpty())
             return 0;
 
-        // Array for instant time lookups of whether or not an occurence has been checked to
-        // limit repetetive and unneccessary checks.
+        // Array for instant time lookups of whether or not an occurence has been checked
         int[] checked = new int[occurences.size()];
 
         // Bunch of variables
@@ -119,7 +119,8 @@ public class DNA {
     }
 
     public static int convertChar(char c) {
-        // Spent roughly 15 minutes working on this simply bc I wanted it 1-4
+        // Spent roughly 15 minutes working on this simply bc I wanted it 0-3 and this was
+        // the first idea I could come up with.
        return (c - 64) % 5;
     }
 
@@ -138,7 +139,9 @@ public class DNA {
     }
 
     public static long convertString(String s) {
-        // Uses bit shifting to bring numbers to the power of 4 per loop
+        // Uses bit shifting to bring numbers to the power of 4 per loop and not utilizing a
+        // modular operation because the maximum value given a STR with length less than 10
+        // is less than maximum long.
         long numSTR = convertChar(s.charAt(0));
         for (int i = 1; i < s.length(); i++) {
             numSTR = shiftLeft(numSTR) + convertChar(s.charAt(i));
@@ -147,9 +150,14 @@ public class DNA {
     }
 
     public static boolean isValid(String s) {
+        // Still assumes the sequence is correct but since this method doesn't actually add
+        // anything since we know the STR provided is valid, didn't find that it was worth
+        // going through another entire iteration of the sequence just for fun.
         if (s == null || s.isEmpty())
             return false;
-        // Add an extra step to check if all the letters are A, T, C, or G
+        for (int i = 0; i < s.length(); i++)
+            if (s.charAt(i) != 'A' && s.charAt(i) != 'T' && s.charAt(i) != 'C' && s.charAt(i) != 'G')
+                return false;
         return true;
     }
 }

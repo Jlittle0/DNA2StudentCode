@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d822f69-9e3c-4e2b-8ee1-11779bb646bd" name="Changes" comment="Switched the number 10 to number 4 from my first attempt. Should implement everything new and is now faster. Gonna restart  computer to test.">
+    <list default="true" id="6d822f69-9e3c-4e2b-8ee1-11779bb646bd" name="Changes" comment="Commit Test.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WORK_LOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/WORK_LOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DNA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DNA.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +146,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729284208221</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Commit Test.">
+      <option name="closed" value="true" />
+      <created>1729284891536</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1729284891536</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -164,6 +174,7 @@
     <MESSAGE value="Yay everything works now and all test cases in 3s 200ms" />
     <MESSAGE value="First Attempt." />
     <MESSAGE value="Switched the number 10 to number 4 from my first attempt. Should implement everything new and is now faster. Gonna restart  computer to test." />
-    <option name="LAST_COMMIT_MESSAGE" value="Switched the number 10 to number 4 from my first attempt. Should implement everything new and is now faster. Gonna restart  computer to test." />
+    <MESSAGE value="Commit Test." />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit Test." />
   </component>
 </project>
