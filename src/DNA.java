@@ -20,30 +20,29 @@ public class DNA {
      * TODO: Complete this function, STRCount(), to return longest consecutive run of STR in sequence.
      */
     public static int STRCount(String sequence, String STR) {
-        // Make sure to go through the sequence, skip over whatever string of STRs we find, and then for the last one in the strong, make sure to go back to the second letter of that STR. AGA AGA AGA AAZT begins at the G for the third AGA.
-
-
-
-        // Radix for this problemset since there are only characters A, C, T, and G.
-        final int RADIX = 4;
-
-        // Value required to cut off the first letter for each calculation when shifting window.
-        // Radix to the power of STR.length() - 1 by using powers of 2.
-        REMOVEFIRST = 1 << (STR.length() - 1) * 2;
-
-        // Basic check to see if STR is valid.
-        if (!isValid(STR))
-            return 0;
-
         /*   // Mapping STR to an integer value by character
                 - A = 1 (65)
                 - C = 3 (67)
                 - G = 2 (71)
                 - T = 0 (84)
          */
+
+        // Radix for this problemset since there are only characters A, C, T, and G.
+        final int RADIX = 4;
+
+        // Radix ^ (STR.length() - 1) by using powers of 2. Cuts first letter in shift.
+        REMOVEFIRST = 1 << (STR.length() - 1) * 2;
+
+        // Basic check to see if STR is valid.
+        if (!isValid(STR))
+            return 0;
+
         long numSTR = convertString(STR);
 
+        // Initial window
         long currentSegment = convertString(sequence.substring(0, STR.length()));
+
+        // Arraylist to hold location of all occurences of desired STR
         ArrayList<Long> occurences = new ArrayList<>();
 
         // Find all instances of the target segment and add them to occurences arraylist
@@ -96,6 +95,7 @@ public class DNA {
         return highestCount;
     }
 
+    // Checks to see whether or not I should continue iterating through occurences for longest
     public static boolean checkContinue(ArrayList<Long> arr, int index, int count) {
         if (arr.size() - index < count)
             return false;
@@ -114,6 +114,7 @@ public class DNA {
         return index + temp;
     }
 
+    // Shifts viewing over by one by removing leading term, then adding on the new one.
     public static long replaceNew(long currentSegment, char nextLetter) {
         return removeFirst(currentSegment) + convertChar(nextLetter);
     }

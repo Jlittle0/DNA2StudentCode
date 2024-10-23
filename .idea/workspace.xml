@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d822f69-9e3c-4e2b-8ee1-11779bb646bd" name="Changes" comment="Commit Test.">
+    <list default="true" id="6d822f69-9e3c-4e2b-8ee1-11779bb646bd" name="Changes" comment="Oct 22. After Class Working. Second Block.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WORK_LOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/WORK_LOG.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DNA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DNA.java" afterDir="false" />
@@ -154,7 +154,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729284891536</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Oct 22. After Class Working. Second Block.">
+      <option name="closed" value="true" />
+      <created>1729623568065</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1729623568065</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -175,6 +183,7 @@
     <MESSAGE value="First Attempt." />
     <MESSAGE value="Switched the number 10 to number 4 from my first attempt. Should implement everything new and is now faster. Gonna restart  computer to test." />
     <MESSAGE value="Commit Test." />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit Test." />
+    <MESSAGE value="Oct 22. After Class Working. Second Block." />
+    <option name="LAST_COMMIT_MESSAGE" value="Oct 22. After Class Working. Second Block." />
   </component>
 </project>
