@@ -43,10 +43,13 @@ public class DNA {
         long currentSegment = convertString(sequence.substring(0, STR.length()));
 
         // Arraylist to hold location of all occurences of desired STR
+        // and yes this only works because sequence size is less than max_int and could be
+        // removed to make overall run time faster. But felt it was nice to have for testing
+        // and changing things in the future.
         ArrayList<Long> occurences = new ArrayList<>();
 
         // Find all instances of the target segment and add them to occurences arraylist
-        for (int i = STR.length(); i < sequence.length(); i++) {
+        for (int i = STR.length() - 1; i < sequence.length(); i++) {
             // If the segment I'm viewing is equal to the target I'm looking for, add it to the
             // arraylist and then move to the next letter in the sequence.
             if (currentSegment == numSTR)
@@ -94,6 +97,8 @@ public class DNA {
 
         return highestCount;
     }
+
+
 
     // Checks to see whether or not I should continue iterating through occurences for longest
     public static boolean checkContinue(ArrayList<Long> arr, int index, int count) {

@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d822f69-9e3c-4e2b-8ee1-11779bb646bd" name="Changes" comment="Oct 22. After Class Working. Second Block.">
+    <list default="true" id="6d822f69-9e3c-4e2b-8ee1-11779bb646bd" name="Changes" comment="Potentially Final Commit. Pushing to git to run on home computer to test largestCase.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WORK_LOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/WORK_LOG.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DNA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DNA.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -162,7 +161,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729623568065</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Potentially Final Commit. Pushing to git to run on home computer to test largestCase.">
+      <option name="closed" value="true" />
+      <created>1729696200186</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1729696200187</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -184,6 +191,7 @@
     <MESSAGE value="Switched the number 10 to number 4 from my first attempt. Should implement everything new and is now faster. Gonna restart  computer to test." />
     <MESSAGE value="Commit Test." />
     <MESSAGE value="Oct 22. After Class Working. Second Block." />
-    <option name="LAST_COMMIT_MESSAGE" value="Oct 22. After Class Working. Second Block." />
+    <MESSAGE value="Potentially Final Commit. Pushing to git to run on home computer to test largestCase." />
+    <option name="LAST_COMMIT_MESSAGE" value="Potentially Final Commit. Pushing to git to run on home computer to test largestCase." />
   </component>
 </project>
